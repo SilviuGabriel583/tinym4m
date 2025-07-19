@@ -11,17 +11,17 @@ const db = knex({
   connection: {
     ...(isSQLite && { filename: env.DB_FILENAME }),
     host: env.DB_HOST,
-    port: env.DB_PORT,
+    port: Number(env.DB_PORT),
     database: env.DB_NAME,
     user: env.DB_USER,
     password: env.DB_PASSWORD,
     ssl: {
       rejectUnauthorized: false
     },
-    pool: {
-      min: env.DB_POOL_MIN,
-      max: env.DB_POOL_MAX
-    }
+  },
+  pool: {
+    min: Number(env.DB_POOL_MIN),
+    max: Number(env.DB_POOL_MAX)
   },
   useNullAsDefault: true,
 });
